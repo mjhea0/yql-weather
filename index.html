@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" ng-app="weather">
+
+  <head>
+    <meta charset="utf-8">
+    <title>Weather Search with AngularJS</title>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <style>
+      body {padding-top: 20px;}
+      .container {max-width: 450px;}
+    </style>
+  </head>
+  
+  <body ng-controller="WeatherCtrl">
+    <div class="container">
+      <form role="form">
+      <div class="form-group">
+        <label class="forms-inline" for="exampleInputEmail1"></label>
+        <input type="text" class="form-control input-search" placeholder="Enter a Zipcode" ng-model="query">
+      </div>
+      <button ng-click="loadWeather()" class="btn btn-default">Submit</button>
+      </form>
+      <br>
+      <div class="weather">
+        <table class="table" ng-cloak ng-show="woeid != 0 && query">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Current Weather</th>
+              <th>Tomorrow's Weather</th>
+            </tr>
+          </thead>
+          <tbody>
+            <td>{{ data.location.city }}, {{ data.location.region }}</td>
+            <td>{{ data.item.condition.text }}, {{ data.item.condition.temp }} {{ data.units.temperature }}</td>
+            <td>{{ data.item.forecast[1].day }}, {{ data.item.forecast[1].date }}: {{ data.item.forecast[1].text }} with high temperature of {{ data.item.forecast[1].high }} {{ data.units.temperature }} and low temperature of {{ data.item.forecast[1].low }} {{ data.units.temperature }}.</td>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+    <script src="app/app.js"></script>
+  </body>
+
+</html>
